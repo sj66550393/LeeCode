@@ -1,0 +1,28 @@
+class Solution {  
+    public int myAtoi(String str) {  
+        str = str.trim();  
+        if(str == null || str.length() == 0)  
+            return 0;  
+        int length = str.length();  
+        int isNegative =1;  
+        int i = 0;  
+        long  result = 0;  
+        if(str.charAt(0) == '+')  
+            i++;  
+        else if(str.charAt(0) == '-'){  
+            isNegative = -1;  
+            i++;  
+        }  
+        for(; i<length ; i++){                
+           if(str.charAt(i) >= '0' && str.charAt(i) <= '9'){  
+                result = result * 10 + str.charAt(i) - '0';  
+               if(result > Integer.MAX_VALUE){  
+            return isNegative < 0 ? Integer.MIN_VALUE : Integer.MAX_VALUE;  
+        }  
+           }else{                
+                break;  
+           }  
+        }     
+        return (int)result * isNegative;  
+    }  
+}
